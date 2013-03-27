@@ -1,0 +1,49 @@
+{
+  "name": "Static-Site-Build-Boilerplate",
+  "title": "Static Site Build Boilerplate",
+  "description": "Boilerplate nonsense for use on static site builds.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/nickpack/static-site-build-boilerplate",
+  "author": {
+    "name": "Nick Pack",
+    "email": "nick@nickpack.com",
+    "url": "http://0xdeadfa11.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nickpack/static-site-build-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nickpack/static-site-build-boilerplate/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nickpack/static-site-build-boilerplate/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-sass": "~0.4.0",
+    "grunt-contrib-sass": "~0.3.0",
+    "grunt-contrib-csslint": "~0.1.1",
+    "grunt-contrib-cssmin": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-livereload": "~0.1.2"
+  },
+  "main": "./server/server",
+  "keywords": [
+    "static"
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "uglify-js": "~2.2.5",
+    "grunt-contrib-jasmine": "~0.4.1",
+    "phantomjs": "~1.9.0-0",
+    "grunt-lib-phantomjs": "~0.2.0",
+    "grunt-bowerful": "~0.2.0"
+  }
+}
