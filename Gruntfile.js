@@ -1,3 +1,11 @@
+'use strict';
+var path = require('path');
+var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+
+var folderMount = function folderMount(connect, point) {
+  return connect.static(path.resolve(point));
+};
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -87,15 +95,37 @@ module.exports = function(grunt) {
     watch: {
       files: 'src/**/*',
       tasks: ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'template']
+    },
+    livereload: {
+      port: 35729 // Default livereload listening port.
+    },
+    connect: {
+      livereload: {
+        options: {
+          port: 8001,
+          middleware: function(connect, options) {
+            return [lrSnippet, folderMount(connect, options.base)]
+          }
+        }
+      }
+    },
+    regarde: {
+      project: {
+        files: 'src/**/*',
+        tasks: ['livereload']
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-templater');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -103,5 +133,5 @@ module.exports = function(grunt) {
   grunt.registerTask('lint', ['jshint', 'csslint']);
   grunt.registerTask('minify', ['sass', 'concat', 'cssmin', 'uglify']);
   grunt.registerTask('build', ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'template']);
-
+  grunt.registerTask('reloader', ['livereload-start', 'connect', 'regarde']);
 };

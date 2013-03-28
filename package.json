@@ -47,5 +47,7 @@
     "grunt-contrib-livereload": "~0.1.2",
     "grunt-templater": "0.0.3-1",
     "bower": "~0.8.5",
+    "grunt-contrib-connect": "~0.2.0",
+    "grunt-regarde": "~0.1.1"
   }
 }
