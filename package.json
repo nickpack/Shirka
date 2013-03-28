@@ -30,9 +30,12 @@
     "grunt-contrib-csslint": "~0.1.1",
     "grunt-contrib-cssmin": "~0.5.0",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-livereload": "~0.1.2"
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-templater": "0.0.3-1",
+    "bower": "~0.8.5",
+    "ejs": "~0.8.3"
   },
-  "main": "./server/server",
+  "main": "./src/index",
   "keywords": [
     "static"
   ],
