@@ -11,7 +11,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
@@ -25,7 +24,6 @@ module.exports = function(grunt) {
         dest: 'build/js/libs.min.js'
       }
     },
-
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js'],
       options: {
@@ -63,6 +61,19 @@ module.exports = function(grunt) {
         }
       },
     },
+    // Templates
+    template: {
+      index: {
+        src: 'src/index.html',
+        dest: 'build/index.html',
+        engine: 'ejs',
+        variables: {
+          css_name: '<%= pkg.name %>.min.css',
+          js_name: '<%= pkg.name %>.min.js',
+          pretty: true
+        }
+      }
+    },
     // General
     copy: {
       main: {
@@ -75,7 +86,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: 'src/**/*',
-      tasks: ['sass', 'concat', 'cssmin', 'uglify', 'copy']
+      tasks: ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'template']
     }
   });
 
@@ -85,11 +96,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-templater');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.registerTask('lint', ['jshint', 'csslint']);
   grunt.registerTask('minify', ['sass', 'concat', 'cssmin', 'uglify']);
-  grunt.registerTask('build', ['sass', 'concat', 'cssmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'template']);
 
 };
