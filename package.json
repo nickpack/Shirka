@@ -23,16 +23,9 @@
     }
   ],
   "dependencies": {
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-concat": "~0.1.3",
-    "grunt-sass": "~0.4.0",
-    "grunt-contrib-sass": "~0.3.0",
-    "grunt-contrib-csslint": "~0.1.1",
-    "grunt-contrib-cssmin": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-livereload": "~0.1.2"
+    "ejs": "~0.8.3"
   },
-  "main": "./server/server",
+  "main": "./src/index",
   "keywords": [
     "static"
   ],
@@ -44,6 +37,15 @@
     "grunt-contrib-jasmine": "~0.4.1",
     "phantomjs": "~1.9.0-0",
     "grunt-lib-phantomjs": "~0.2.0",
-    "grunt-bowerful": "~0.2.0"
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-sass": "~0.4.0",
+    "grunt-contrib-sass": "~0.3.0",
+    "grunt-contrib-csslint": "~0.1.1",
+    "grunt-contrib-cssmin": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-templater": "0.0.3-1",
+    "bower": "~0.8.5",
   }
 }
