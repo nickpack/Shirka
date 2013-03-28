@@ -72,6 +72,16 @@ module.exports = function(grunt) {
           js_name: '<%= pkg.name %>.min.js',
           pretty: true
         }
+      },
+      devindex: {
+        src: 'src/index.html',
+        dest: 'build/index.html',
+        engine: 'ejs',
+        variables: {
+          css_name: '<%= pkg.name %>.css',
+          js_name: '<%= pkg.name %>.js',
+          pretty: true
+        }
       }
     },
     // General
@@ -86,7 +96,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: 'src/**/*',
-      tasks: ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'template']
+      tasks: ['sass', 'concat', 'copy', 'template:devindex']
     }
   });
 
