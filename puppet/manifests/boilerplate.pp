@@ -47,8 +47,8 @@ exec { 'add-apt-repository ppa:chris-lea/node.js':
 }
 
 package { 'nodejs': 
-  ensure => present,
-  require => Exec['apt-get update'],
+  ensure => latest,
+  require => [Exec['apt-get update'], Exec['add-apt-repository ppa:chris-lea/node.js']],
 }
 
 exec { 'npm':
