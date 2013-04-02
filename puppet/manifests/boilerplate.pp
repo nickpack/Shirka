@@ -6,6 +6,26 @@ exec { 'apt-get update':
   command => '/usr/bin/apt-get update',
 }
 
+package { 'curl':
+  ensure => present,
+  require => Exec['apt-get update'],
+}
+
+package { 'software-properties-common':
+  ensure => present,
+  require => Exec['apt-get update'],
+}
+
+package { 'python-software-properties':
+  ensure => present,
+  require => Exec['apt-get update'],
+}
+
+package { 'ruby1.9.3':
+  ensure => present,
+  require => Exec['apt-get update'],
+}
+
 package { 'nginx': 
   ensure => present,
   require => Exec['apt-get update'],
@@ -21,9 +41,30 @@ package { 'git-core':
   require => Exec['apt-get update'],
 }
 
-package { 'node': 
+exec { 'add-apt-repository ppa:chris-lea/node.js':
+  command => '/usr/bin/apt-add-repository ppa:chris-lea/node.js',
+  require => Package['python-software-properties'],
+}
+
+package { 'nodejs': 
   ensure => present,
   require => Exec['apt-get update'],
+}
+
+exec { 'npm':
+  command => '/usr/bin/curl https://npmjs.org/install.sh | /bin/sh',
+  require => [Package['nodejs'], Package['curl']],
+  environment => 'clean=yes',
+}
+
+exec { 'gem install sass': 
+  command => '/usr/bin/gem install sass',
+  require => Package['ruby1.9.3'],
+}
+
+exec { 'npm install -g grunt-cli bower':,
+  command => '/usr/bin/npm install -g grunt-cli',
+  require => Exec['npm'],
 }
 
 service { 'nginx':
@@ -68,5 +109,5 @@ file { 'vagrant-nginx-enable':
 
 file { "/var/www/":
     ensure => link,
-    target => "/vagrant/build",
+    target => "/vagrant",
 }
