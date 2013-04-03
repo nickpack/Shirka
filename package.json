@@ -22,9 +22,7 @@
       "url": "https://github.com/nickpack/static-site-build-boilerplate/blob/master/LICENSE-MIT"
     }
   ],
-  "dependencies": {
-    "ejs": "~0.8.3"
-  },
+  "dependencies": {},
   "main": "./src/index",
   "keywords": [
     "static"
