@@ -1,13 +1,21 @@
+var swig_templates = ['index'];
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     // JS
     concat: {
-      all: {
+      development: {
         files: {
           'build/js/libs.js': ['src/js/libs/jquery/jquery.js', 'src/js/libs/**/*.js'],
           'build/js/<%= pkg.name %>.js': 'src/js/scripts/**/*.js'
+        }
+      },
+      production: {
+        files: {
+          'release/js/libs.js': ['src/js/libs/jquery/jquery.js', 'src/js/libs/**/*.js'],
+          'release/js/<%= pkg.name %>.js': 'src/js/scripts/**/*.js'
         }
       }
     },
@@ -16,12 +24,12 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       project: {
-        src: 'build/js/<%= pkg.name %>.js',
-        dest: 'build/js/<%= pkg.name %>.min.js'
+        src: 'release/js/<%= pkg.name %>.js',
+        dest: 'release/js/<%= pkg.name %>.min.js'
       },
       libs: {
-        src: 'build/js/libs.js',
-        dest: 'build/js/libs.min.js'
+        src: 'release/js/libs.js',
+        dest: 'release/js/libs.min.js'
       }
     },
     jshint: {
@@ -37,9 +45,14 @@ module.exports = function(grunt) {
     },
     // CSS
     sass: {
-        dist: {
+        development: {
             files: {
                 'build/css/<%= pkg.name %>.css': 'src/scss/style.scss',
+            }
+        },
+        production: {
+            files: {
+                'release/css/<%= pkg.name %>.css': 'src/scss/style.scss',
             }
         }
     },
@@ -48,7 +61,7 @@ module.exports = function(grunt) {
         options: {
           import: false
         },
-        src: ['build/css/<%= pkg.name %>.css']
+        src: ['release/css/<%= pkg.name %>.css']
       }
     },
     cssmin: {
@@ -57,7 +70,7 @@ module.exports = function(grunt) {
           banner: '/* <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */'
         },
         files: {
-          'build/css/<%= pkg.name %>.min.css': 'build/css/<%= pkg.name %>.css'
+          'release/css/<%= pkg.name %>.min.css': 'release/css/<%= pkg.name %>.css'
         }
       },
     },
@@ -66,7 +79,19 @@ module.exports = function(grunt) {
       development: {
         root: "src/",
         dest: "build/",
-        src: ['index'],
+        src: swig_templates,
+        css_name: '<%= pkg.name %>.css',
+        js_name: '<%= pkg.name %>.js',
+        siteUrl: 'http://www.somedomain.com/',
+        sitemap_priorities: {
+            '_DEFAULT_': '0.5',
+            'index': '0.8'
+          }
+      },
+      production: {
+        root: "src/",
+        dest: "release/",
+        src: swig_templates,
         css_name: '<%= pkg.name %>.min.css',
         js_name: '<%= pkg.name %>.min.js',
         siteUrl: 'http://www.somedomain.com/',
@@ -74,21 +99,28 @@ module.exports = function(grunt) {
             '_DEFAULT_': '0.5',
             'index': '0.8'
           }
-      }
+      }
     },
     // General
     copy: {
-      main: {
+      development: {
         files: [
           {expand: true, cwd: 'src/', src: ['*', '!*.swig'], dest: 'build/', filter: 'isFile'},
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'build/'},
           {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'build/'},
         ]
+      },
+      production: {
+        files: [
+          {expand: true, cwd: 'src/', src: ['*', '!*.swig'], dest: 'release/', filter: 'isFile'},
+          {expand: true, cwd: 'src/', src: ['img/**'], dest: 'release/'},
+          {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'release/'},
+        ]
       }
     },
     watch: {
       files: 'src/**/*',
-      tasks: ['sass', 'concat', 'copy', 'template:devindex']
+      tasks: ['sass', 'concat', 'copy', 'swig:development']
     }
   });
 
@@ -103,7 +135,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.registerTask('lint', ['jshint', 'csslint']);
-  grunt.registerTask('minify', ['sass', 'concat', 'cssmin', 'uglify']);
-  grunt.registerTask('build', ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'swig']);
+  grunt.registerTask('minify', ['sass:production', 'concat:production', 'cssmin', 'uglify']);
+  grunt.registerTask('build', ['sass:development', 'concat:development', 'copy:development', 'swig:development']);
+  grunt.registerTask('release', ['sass:production', 'concat:production', 'cssmin', 'uglify', 'copy:production', 'swig:production']);
 
 };
