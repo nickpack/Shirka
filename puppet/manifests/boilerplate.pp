@@ -41,14 +41,14 @@ package { 'git-core':
   require => Exec['apt-get update'],
 }
 
-exec { 'add-apt-repository ppa:chris-lea/node.js':
-  command => '/usr/bin/apt-add-repository ppa:chris-lea/node.js',
+exec { 'Add-node-repo':
+  command => '/usr/bin/apt-add-repository ppa:chris-lea/node.js && /usr/bin/apt-get update',
   require => Package['python-software-properties'],
 }
 
 package { 'nodejs': 
   ensure => latest,
-  require => [Exec['apt-get update'], Exec['add-apt-repository ppa:chris-lea/node.js']],
+  require => [Exec['apt-get update'], Exec['Add-node-repo']],
 }
 
 exec { 'npm':
