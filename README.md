@@ -2,11 +2,8 @@
 This is an attempt at automating our static site builds at [Cohaesus](http://www.cohaesus.co.uk).
 
 ## Requirements
-* [Node](http://nodejs.org/)
-* [npm](https://npmjs.org/)
-* [bower](http://twitter.github.com/bower/)
-* [grunt](http://gruntjs.com/)
 * [Vagrant](http://www.vagrantup.com/)
+* [VirtualBox](https://www.virtualbox.org/) or [VMWare Fusion 5] (http://www.vmware.com/products/fusion/overview.html)
 
 ## Whats Included in the boilerplate?
 
@@ -14,33 +11,50 @@ This is an attempt at automating our static site builds at [Cohaesus](http://www
 * Bower managed js dependencies
 * SCSS compilation
 * Minification and concatenation of JS and CSS
-* Templated html via grunt-templater, meaning you can use your favourite node template engine to generate static files
+* Templated html via grunt-swig, with compilation to static files
 * A number of grunt tasks to speed up development
 * Vagrant & Puppet nginx dev box configuration
+* All grunt tasks and dependencies installed in the vagrant host
 
 ## Getting started
-1. Install node and npm (See links above in requirements)
-2. Use npm to install grunt-cli and bower globally (You may need sudo for this) 
-> npm install -g grunt-cli bower
-3. Run npm install from the root, to install all of the build dependencies
-> npm install
-4. Run bower install from the root to add common js libraries to the project (currently jQuery and modernizr)
-> bower install
-5. Run grunt build to build the initial set of files (You should see these in the build directory once it completes it)
-> grunt build
-6. Run grunt watch to trigger builds on file changes
-> grunt watch
-7. Run vagrant up to get your local dev box going 
-> vagrant up
-8. Hack till your heart is content, and build some awesome shit.
+1. Install VirtualBox or Vmware Fusion 5 (See links above in requirements)
+2. Install Vagrant (See links above in requirements)
+3. Clone project
+4. In root of project type the following command to start the vagrant VM and configure using puppet
 
+For default VirtualBox provider
 
+    vagrant up
+
+For VMWare Fusion 5 Provider
+
+    vagrant up --provider vmware_fusion
+
+The Vagrant file is configured to select the right box image depending on the provider.
+
+## Running a Build
+SSH onto the VM and navigate to the /vagrant directory. 
+This directory is mapped to the root of the project folder
+
+    vagrant ssh
+    cd /vagrant
+    
+There is a start.sh bash script that will do some basic housekeeping, 
+and run the first grunt build
+
+    sh start.sh
+
+The I/O performance of the VirtualBox VM is too poor to usefully run grunt watch, 
+so you will need to manually build the project as you make changes. This can be done using:
+
+    grunt build
+
+Alternatively if you have the VMWare Fusion the improved I/O grunt watch works just fine. 
+You can run this using:
+    
+    grunt watch
+ 
 View the current build at [http://127.0.0.1:8001](http://127.0.0.1:8001) on your local machine 
-
-**If you are not using VMWare, you'll need to change the box filename in the Vagrantfile to precise64.box**
-> config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-
-*Similarly, if you are running a 32-bit box, substitute 64 in the file name for 32.*
 
 ## Configured Grunt Tasks
 * concat - Concatenates third party libs into one file, and project specific js into another
@@ -49,16 +63,18 @@ View the current build at [http://127.0.0.1:8001](http://127.0.0.1:8001) on your
 * sass - Compile SCSS files into one project CSS file
 * csslint - lint CSS syntax
 * cssmin - Minify project css file
-* template - Compile static HTML versions of semi-dynamic templates
+* swig - Compile static HTML versions of semi-dynamic templates
 * copy - Place all project related files in the build directory
 * watch - Watch for changes and rebuild
 * lint - Run jshint and csslint tasks
 * minify - Generate stylesheets from SCSS, concat js files and minify all
-* build - Prepare a complete build (without linting presently)
+* build - Prepare a complete development build
+* release - Prepare a complete production build with minification etc
 
 ## Contributors
 * Nick Pack
+* Matt Meckes
 
 ## Licence
-Copyright (c) 2013 Nick Pack
+Copyright (c) 2013 Cohaesus
 Licensed under the MIT license.	
