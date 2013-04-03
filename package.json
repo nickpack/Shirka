@@ -46,6 +46,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-livereload": "~0.1.2",
     "grunt-templater": "0.0.3-1",
-    "bower": "~0.8.5"
+    "bower": "~0.8.5",
+    "grunt-swig": "git://github.com/Cohaesus/grunt-swig.git"
   }
 }
