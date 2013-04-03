@@ -62,33 +62,25 @@ module.exports = function(grunt) {
       },
     },
     // Templates
-    template: {
-      index: {
-        src: 'src/index.html',
-        dest: 'build/index.html',
-        engine: 'ejs',
-        variables: {
-          css_name: '<%= pkg.name %>.min.css',
-          js_name: '<%= pkg.name %>.min.js',
-          pretty: true
-        }
-      },
-      devindex: {
-        src: 'src/index.html',
-        dest: 'build/index.html',
-        engine: 'ejs',
-        variables: {
-          css_name: '<%= pkg.name %>.css',
-          js_name: '<%= pkg.name %>.js',
-          pretty: true
-        }
-      }
-    },
+    swig: {
+      development: {
+        root: "src/",
+        dest: "build/",
+        src: ['index'],
+        css_name: '<%= pkg.name %>.min.css',
+        js_name: '<%= pkg.name %>.min.js',
+        siteUrl: 'http://www.somedomain.com/',
+        sitemap_priorities: {
+            '_DEFAULT_': '0.5',
+            'index': '0.8'
+          }
+      }
+    },
     // General
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'src/', src: ['*'], dest: 'build/', filter: 'isFile'},
+          {expand: true, cwd: 'src/', src: ['*', '!*.swig'], dest: 'build/', filter: 'isFile'},
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'build/'},
           {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'build/'},
         ]
@@ -106,12 +98,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-templater');
+  grunt.loadNpmTasks('grunt-swig');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.registerTask('lint', ['jshint', 'csslint']);
   grunt.registerTask('minify', ['sass', 'concat', 'cssmin', 'uglify']);
-  grunt.registerTask('build', ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'template']);
+  grunt.registerTask('build', ['sass', 'concat', 'cssmin', 'uglify', 'copy', 'swig']);
 
 };
