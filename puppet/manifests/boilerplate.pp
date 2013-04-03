@@ -41,14 +41,14 @@ package { 'git-core':
   require => Exec['apt-get update'],
 }
 
-exec { 'Add-node-repo':
+exec { 'add node repo':
   command => '/usr/bin/apt-add-repository ppa:chris-lea/node.js && /usr/bin/apt-get update',
   require => Package['python-software-properties'],
 }
 
 package { 'nodejs': 
   ensure => latest,
-  require => [Exec['apt-get update'], Exec['Add-node-repo']],
+  require => [Exec['apt-get update'], Exec['add node repo']],
 }
 
 exec { 'npm':
@@ -62,6 +62,10 @@ exec { 'gem install sass':
   require => Package['ruby1.9.3'],
 }
 
+exec { 'node-modules symlink': 
+  command => '/bin/mkdir /usr/local/node_modules && /bin/ln -s /vagrant/node_modules /usr/local/node_modules',
+}
+
 exec { 'npm install -g grunt-cli bower':,
   command => '/usr/bin/npm install -g grunt-cli bower',
   require => Exec['npm'],
@@ -69,7 +73,7 @@ exec { 'npm install -g grunt-cli bower':,
 
 exec { 'npm-packages':,
   command => '/usr/bin/npm install',
-  require => Exec['npm'],
+  require => [Exec['npm install -g grunt-cli bower'], Exec['node-modules symlink']],
   cwd => '/vagrant',
 }
 
