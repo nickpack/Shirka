@@ -47,19 +47,20 @@ module.exports = function(grunt) {
     sass: {
         development: {
             files: {
-                'build/css/<%= pkg.name %>.css': 'src/scss/style.scss',
+                'build/css/<%= pkg.name %>.css': 'src/scss/style.scss'
             }
         },
         production: {
             files: {
-                'release/css/<%= pkg.name %>.css': 'src/scss/style.scss',
+                'release/css/<%= pkg.name %>.css': 'src/scss/style.scss'
             }
         }
     },
     csslint: {
       scssoutput: {
         options: {
-          import: false
+          'vendor-prefix': false,
+          'adjoining-classes': false
         },
         src: ['release/css/<%= pkg.name %>.css']
       }
@@ -72,7 +73,7 @@ module.exports = function(grunt) {
         files: {
           'release/css/<%= pkg.name %>.min.css': 'release/css/<%= pkg.name %>.css'
         }
-      },
+      }
     },
     // Templates
     swig: {
@@ -107,14 +108,14 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: 'src/', src: ['*', '!*.swig'], dest: 'build/', filter: 'isFile'},
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'build/'},
-          {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'build/'},
+          {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'build/'}
         ]
       },
       production: {
         files: [
           {expand: true, cwd: 'src/', src: ['*', '!*.swig'], dest: 'release/', filter: 'isFile'},
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'release/'},
-          {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'release/'},
+          {expand: true, cwd: 'src/',src: ['assets/**'], dest: 'release/'}
         ]
       }
     },
