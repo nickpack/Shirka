@@ -20,7 +20,10 @@ This is an attempt at automating our static site builds at [Cohaesus](http://www
 1. Install VirtualBox or Vmware Fusion 5 (See links above in requirements)
 2. Install Vagrant (See links above in requirements)
 3. Clone project
-4. In root of project type the following command to start the vagrant VM and configure using puppet
+4. Edit package.json and update the project name and description
+
+## Starting the VM
+In root of project type the following command to start the vagrant VM and configure using puppet
 
 For default VirtualBox provider
 
