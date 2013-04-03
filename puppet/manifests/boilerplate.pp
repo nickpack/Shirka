@@ -63,7 +63,7 @@ exec { 'gem install sass':
 }
 
 exec { 'node-modules symlink': 
-  command => '/bin/mkdir /usr/local/node_modules && /bin/ln -s /vagrant/node_modules /usr/local/node_modules',
+  command => '/bin/rm -rfv /usr/local/node_modules && /bin/rm -rfv /vagrant/node_modules && /bin/mkdir /usr/local/node_modules && /bin/ln -s /usr/local/node_modules /vagrant/node_modules ',
 }
 
 exec { 'npm install -g grunt-cli bower':,
