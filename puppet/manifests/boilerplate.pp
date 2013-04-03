@@ -63,8 +63,14 @@ exec { 'gem install sass':
 }
 
 exec { 'npm install -g grunt-cli bower':,
-  command => '/usr/bin/npm install -g grunt-cli',
+  command => '/usr/bin/npm install -g grunt-cli bower',
   require => Exec['npm'],
+}
+
+exec { 'npm-packages':,
+  command => '/usr/bin/npm install',
+  require => Exec['npm'],
+  cwd => '/vagrant',
 }
 
 service { 'nginx':
