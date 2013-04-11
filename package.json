@@ -1,25 +1,25 @@
 {
-  "name": "Static-Site-Build-Boilerplate",
+  "name": "Valium",
   "title": "Static Site Build Boilerplate",
-  "description": "Boilerplate nonsense for use on static site builds.",
+  "description": "Boilerplate for use on static site builds.",
   "version": "1.0.0",
-  "homepage": "https://github.com/cohaesus/static-site-build-boilerplate",
+  "homepage": "https://github.com/Cohaesus/Valium",
   "author": {
     "name": "Nick Pack",
-    "email": "nick@cohaesus.co.uk",
+    "email": "nick.pack@cohaesus.co.uk",
     "url": "http://www.cohaesus.co.uk"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:cohaesus/static-site-build-boilerplate.git"
+    "url": "git@github.com:Cohaesus/Valium.git"
   },
   "bugs": {
-    "url": "https://github.com/cohaesus/static-site-build-boilerplate/issues"
+    "url": "https://github.com/Cohaesus/Valium/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/cohaesus/static-site-build-boilerplate/blob/master/LICENSE-MIT"
+      "url": "https://github.com/Cohaesus/Valium/blob/master/LICENSE-MIT"
     }
   ],
   "dependencies": {},

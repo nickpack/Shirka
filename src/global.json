@@ -1,0 +1,7 @@
+{
+	siteUrl: 'http://www.somedomain.com/',
+    sitemap_priorities: {
+        '_DEFAULT_': '0.5',
+        'index': '0.8'
+      }
+}

@@ -1,5 +1,3 @@
-var swig_templates = ['index'];
-
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -77,31 +75,27 @@ module.exports = function(grunt) {
     },
     // Templates
     swig: {
-      development: {
-        root: "src/",
-        dest: "build/",
-        src: swig_templates,
+      development: {
+        root: "src/",
+        dest: "build/",
+        src: "src/**/*.swig",
         css_name: '<%= pkg.name %>.css',
         js_name: '<%= pkg.name %>.js',
-        siteUrl: 'http://www.somedomain.com/',
-        sitemap_priorities: {
-            '_DEFAULT_': '0.5',
-            'index': '0.8'
-          }
-      },
+        siteUrl: 'http://www.somedomain.com/',
+        cache: false,
+        sitemap_priorities: {
+            '_DEFAULT_': '0.5',
+            'index': '0.8'
+          }
+      },
       production: {
         root: "src/",
-        dest: "release/",
-        src: swig_templates,
+        dest: "release/",
+        src: "src/**/*.swig",
         css_name: '<%= pkg.name %>.min.css',
-        js_name: '<%= pkg.name %>.min.js',
-        siteUrl: 'http://www.somedomain.com/',
-        sitemap_priorities: {
-            '_DEFAULT_': '0.5',
-            'index': '0.8'
-          }
+        js_name: '<%= pkg.name %>.min.js'
       }
-    },
+    },
     // General
     copy: {
       development: {
