@@ -1,12 +1,22 @@
 module.exports = function(grunt) {
 
+  // This is a bit hacky, but prevents duplicate including of JS deps in final output
+  var bower_libs = require('./component.json');
+  var js_libs = [];
+  
+  for (var package_name in bower_libs.dependencies) {
+    if (bower_libs.dependencies.hasOwnProperty(package_name)) {
+      js_libs.push('src/js/libs/' + package_name + '/' + package_name + '.js');
+    }
+  }
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     // JS
     concat: {
       development: {
         files: {
-          'build/js/libs.js': ['src/js/libs/jquery/jquery.js', 'src/js/libs/**/*.js'],
+          'build/js/libs.js': js_libs,
           'build/js/<%= pkg.name %>.js': 'src/js/scripts/**/*.js'
         }
       },
