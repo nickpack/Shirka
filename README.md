@@ -31,7 +31,7 @@ For default VirtualBox provider
 
 For VMWare Fusion 5 Provider
 
-    vagrant up --provider vmware_fusion
+    vagrant up --provider=vmware_fusion
 
 The Vagrant file is configured to select the right box image depending on the provider.
 
