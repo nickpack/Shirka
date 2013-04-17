@@ -1,9 +1,9 @@
 {
-  "name": "Valium",
+  "name": "Sirka",
   "title": "Static Site Build Boilerplate",
   "description": "Boilerplate for use on static site builds.",
   "version": "0.1.4",
-  "homepage": "https://github.com/Cohaesus/Valium",
+  "homepage": "https://github.com/Cohaesus/Sirka",
   "author": {
     "name": "Nick Pack",
     "email": "nick.pack@cohaesus.co.uk",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Cohaesus/Valium.git"
+    "url": "git@github.com:Cohaesus/Sirka.git"
   },
   "bugs": {
-    "url": "https://github.com/Cohaesus/Valium/issues"
+    "url": "https://github.com/Cohaesus/Sirka/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/Cohaesus/Valium/blob/master/LICENSE-MIT"
+      "url": "https://github.com/Cohaesus/Sirka/blob/master/LICENSE-MIT"
     }
   ],
   "dependencies": {},
