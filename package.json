@@ -1,25 +1,25 @@
 {
-  "name": "Sirka",
+  "name": "Shirka",
   "title": "Static Site Build Boilerplate",
   "description": "Boilerplate for use on static site builds.",
-  "version": "0.1.4",
-  "homepage": "https://github.com/Cohaesus/Sirka",
+  "version": "0.1.5",
+  "homepage": "https://github.com/nickpack/Shirka",
   "author": {
     "name": "Nick Pack",
-    "email": "nick.pack@cohaesus.co.uk",
-    "url": "http://www.cohaesus.co.uk"
+    "email": "nick@nickpack.com",
+    "url": "http://0xdeadfa11.net"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Cohaesus/Sirka.git"
+    "url": "git@github.com:nickpack/Shirka.git"
   },
   "bugs": {
-    "url": "https://github.com/Cohaesus/Sirka/issues"
+    "url": "https://github.com/nickpack/Shirka/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/Cohaesus/Sirka/blob/master/LICENSE-MIT"
+      "url": "https://github.com/nickpack/Shirka/blob/master/LICENSE-MIT"
     }
   ],
   "dependencies": {},
@@ -45,6 +45,6 @@
     "grunt-contrib-livereload": "~0.1.2",
     "grunt-templater": "0.0.3-1",
     "bower": "~0.8.5",
-    "grunt-swig": "git://github.com/Cohaesus/grunt-swig.git"
+    "grunt-swig": "git://github.com/nickpack/grunt-swig.git"
   }
 }

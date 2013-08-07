@@ -3,11 +3,11 @@ This is an attempt at automating our static site builds at [Cohaesus](http://www
 
 ## Requirements
 * [Vagrant](http://www.vagrantup.com/)
-* [VirtualBox](https://www.virtualbox.org/) or [VMWare Fusion 5] (http://www.vmware.com/products/fusion/overview.html)
+* [VirtualBox](https://www.virtualbox.org/) or [VMWare Fusion 5](http://www.vmware.com/products/fusion/overview.html)
 
 ## Whats Included in the boilerplate?
 
-* [Nick Pack's SCSS fork of Skeleton](https://github.com/nickpack/Skeleton-SCSS)
+* [Nick Pack's SCSS fork of Skeleton](https://github.com/nickpack/Ribs)
 * Bower managed js dependencies
 * SCSS compilation
 * Minification and concatenation of JS and CSS
@@ -26,7 +26,7 @@ This is an attempt at automating our static site builds at [Cohaesus](http://www
 In root of project type the following command to start the vagrant VM and configure using puppet
 
 For default VirtualBox provider
-
+	Uncomment the commented box directives in the Vagrantfile
     vagrant up
 
 For VMWare Fusion 5 Provider
@@ -79,5 +79,5 @@ View the current build at [http://127.0.0.1:8001](http://127.0.0.1:8001) on your
 * Matt Meckes
 
 ## Licence
-Copyright (c) 2013 Cohaesus
+Copyright (c) 2013 Nick Pack
 Licensed under the MIT license.	
